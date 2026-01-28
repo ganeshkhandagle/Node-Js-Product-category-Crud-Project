@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+    <h2>Category Master</h2>
+    <a href="/categories/create" class="btn btn-primary mb-3">Add Category</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(category=> { %>
+                <tr>
+                    <td>
+                        <%= category.id %>
+                    </td>
+                    <td>
+                        <%= category.name %>
+                    </td>
+                    <td>
+                        <a href="/categories/<%= category.id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                        <form action="/categories/<%= category.id %>?_method=DELETE" method="POST"
+                            style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <%- include('../partials/footer') %>
